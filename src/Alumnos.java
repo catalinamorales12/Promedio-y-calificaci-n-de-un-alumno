@@ -1,17 +1,17 @@
 import java.util.Scanner;
 
 public class Alumnos {
-    // Aqui se agregan los atributos tipo String y array
+    // Aquí están los atributos tipo String y tipo array
     private String nombre;
     private double[] calificaciones;
 
-    // Aqui esta el constructor
+    // Constructor que recibe el nombre y las calificaciones
     public Alumnos(String nombre, double[] calificaciones) {
         this.nombre = nombre;
         this.calificaciones = calificaciones;
     }
 
-    // Metodo para calcular el promedio
+    // Metodo que calcula el promedio de las 5 calificaciones
     public double calcularPromedio() {
         double suma = 0;
         for (double cal : calificaciones) {
@@ -20,7 +20,7 @@ public class Alumnos {
         return suma / calificaciones.length;
     }
 
-    // Metodo para la calificacion final
+    // Medoto para obtener la calificación final con letra
     public char obtenerCalificacionFinal(double promedio) {
         if (promedio <= 50) {
             return 'F';
@@ -37,13 +37,15 @@ public class Alumnos {
         }
     }
 
-    // Metodo de impresion de los resultados
-    public void imprimirResultados(double promedio, char calificacionFinal) {
+    // Metodo que imprime los resultados y el nombre
+    public void imprimirResultados(String nombre, double promedio, char calificacionFinal) {
+        System.out.println("\n--- Resultados ---");
+        System.out.println("Nombre del estudiante: " + nombre);
         System.out.println("Promedio: " + promedio);
         System.out.println("Calificación final: " + calificacionFinal);
     }
 
-    // Metodo para pedir agregar el nombre del alumno participante e ingresar las calificaciones
+    // Metodo que almacena los 5 valores para poder ejecutar el programa
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -56,14 +58,15 @@ public class Alumnos {
             calificaciones[i] = scanner.nextDouble();
         }
 
-        // Este es para crear el objeto alumno
+        // Crear objeto Alumnos
         Alumnos alumno = new Alumnos(nombre, calificaciones);
 
-        // Este es para calcular y mostrar resultados
+        // Calcular y mostrar resultados
         double promedio = alumno.calcularPromedio();
         char calificacion = alumno.obtenerCalificacionFinal(promedio);
-        alumno.imprimirResultados(promedio, calificacion);
+        alumno.imprimirResultados(nombre, promedio, calificacion);
 
         scanner.close();
     }
 }
+
